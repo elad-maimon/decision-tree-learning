@@ -8,18 +8,17 @@ public class FileParser {
 	public static final String ATTR_TERMINATOR = "<END_ATTR>";
 	public static final String TRAIN_TERMINATOR = "<END_TRAIN>";
 	
-//	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
-	private Attributes attributes = new Attributes();
-	private int training_set;
-	private int test_set;
+	private Attribute[] attributes;
+	private int         training_set;
+	private int         test_set;
 
 	public FileParser(String filename) {
 		parseInputFile(filename);
 	}
 
-	public Attributes getAttributes() { return attributes; }
-	public int getTrainingSet()       { return training_set; }
-	public int getTestSet()           { return test_set; }
+	public Attribute[] getAttributes()  { return attributes; }
+	public int         getTrainingSet() { return training_set; }
+	public int         getTestSet()     { return test_set; }
 	
 	private void parseInputFile(String filename) {
 		BufferedReader br = null;
@@ -30,11 +29,14 @@ public class FileParser {
 			br = new BufferedReader(new FileReader(filename));
 
 			// Reading attributes section
+			ArrayList<Attribute> attributes_list = new ArrayList<Attribute>();
 			while (!(line = br.readLine()).equals(ATTR_TERMINATOR)) {
 				parts = line.split("\\s+");
 				if (parts.length == 2)
-					attributes.add(parts[0], parts[1].split(","));
+					attributes_list.add(new Attribute(parts[0], parts[1].split(",")));
 			}
+			
+			attributes = (Attribute[])attributes_list.toArray();
 
  		} catch (IOException e) {
 			System.out.println("Error occured while reading input file");

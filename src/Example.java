@@ -1,5 +1,6 @@
 import java.util.HashMap;
 
+@SuppressWarnings("serial")
 public class Example extends HashMap<String, String> {
 	public void setClassification(String classification) {
 		this.put("classification", classification);
@@ -10,11 +11,11 @@ public class Example extends HashMap<String, String> {
 	}
 	
 	public static class Builder {
-		private Attributes attributes;
-		private String[]   values;
-		private String     classification;
+		private Attribute[] attributes;
+		private String[]    values;
+		private String      classification;
 
-		public Builder withAttributes(Attributes attributes) {
+		public Builder withAttributes(Attribute[] attributes) {
 			this.attributes = attributes;
 			return this;
 		}
@@ -32,21 +33,12 @@ public class Example extends HashMap<String, String> {
 		public Example build() {
 			Example example = new Example();
 			
-			for (Attribute attr : attributes) {
-				example.attributes.pu
-			}
+			for (int i = 0; i < attributes.length; i++)
+				example.put(attributes[i].name, values[i]);
+				
+			example.setClassification(classification);
 			
 			return example;
 		}
 	}
-
 }
-
-//if (classification.equals("yes"))
-//	this.classification = true;
-//else if (classification.equals("no"))
-//	this.classification = false;
-//else {
-//	System.out.println("Recived error classification: " + classification);
-//	System.exit(1);
-//}
