@@ -6,7 +6,7 @@ public class java_ex3 {
 		FileParser fileParser = new FileParser(INPUT_FILENAME);
 
 		DTL dtl = new DTL();
-		dtl.train(fileParser.getTrainingSet(), fileParser.getAttributes(), null);
+		dtl.train(fileParser.getTrainingSet(), fileParser.getAttributes());
 
 		for (Example test_example : fileParser.getTestSet()) {
 			dtl.evaluate(test_example);
