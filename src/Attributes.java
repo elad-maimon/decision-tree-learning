@@ -1,23 +1,19 @@
-import java.util.ArrayList;
-
 public class Attributes {
-	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	private Attribute[] attributes;
 
-	public void add(String name, String[] values) {
-		attributes.add(new Attribute(name, values));
+	public Attributes(Attribute[] attributes) {
+		this.attributes = attributes;
+	}
+	
+	public Attribute get(int i) {
+		return attributes[i];
 	}
 	
 	public String toString() {
 		StringBuffer str = new StringBuffer();
 
-		for (Attribute attribute : attributes) {
-			str.append(attribute.name).append(": ");
-			
-			for (String value : attribute.values)
-				str.append(value).append(", ");
-			
-			str.append("\n");
-		}
+		for (Attribute attribute : attributes)
+			str.append(attribute);
 		
 		return str.toString();
 	}
