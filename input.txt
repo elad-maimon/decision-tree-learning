@@ -1,0 +1,46 @@
+bypassing_car_speed           <20,20-60,60-80,>80
+field_of_vision               narrow,wide
+time                          day,night,twilight
+weather                       wintry,clear,rainy
+chance_to_bypassing           sure,maybe,barely
+my_acceleration               high,medium,low
+distance_to_coming_car        no_car,far,medium
+will_bypass
+<END_ATTR>
+<20,narrow,twilight,clear,barely,high,no_car, yes
+<20,narrow,night,clear,maybe,low,far, no
+20-60,wide,twilight,wintry,barely,medium,no_car, yes
+20-60,wide,night,rainy,barely,low,far, no
+20-60,narrow,day,clear,maybe,high,no_car, yes
+20-60,narrow,day,rainy,sure,medium,no_car, no
+20-60,wide,day,rainy,sure,low,medium, no
+<20,narrow,day,wintry,sure,medium,medium, no
+60-80,narrow,night,rainy,barely,high,far, no
+60-80,narrow,day,wintry,maybe,high,far, yes
+60-80,wide,twilight,clear,barely,low,no_car, yes
+60-80,wide,day,wintry,sure,low,medium, no
+>80,wide,day,wintry,maybe,high,far, yes
+>80,narrow,day,clear,barely,high,no_car, yes
+>80,narrow,day,rainy,maybe,medium,no_car, no
+>80,wide,twilight,rainy,maybe,high,far, no
+60-80,wide,twilight,wintry,barely,high,medium, yes
+60-80,narrow,night,rainy,sure,medium,far, no
+60-80,wide,day,clear,maybe,low,no_car, yes
+20-60,wide,twilight,wintry,maybe,high,medium, yes
+20-60,narrow,day,rainy,maybe,medium,far, no
+>80,narrow,night,rainy,barely,high,far, no
+>80,wide,night,wintry,barely,high,far, yes
+<20,narrow,day,rainy,maybe,medium,no_car, yes
+20-60,narrow,twilight,wintry,maybe,high,medium, no
+20-60,wide,day,clear,barely,low,far, yes
+60-80,narrow,day,clear,maybe,low,far, no
+60-80,narrow,night,rainy,barely,medium,no_car, no
+20-60,wide,twilight,wintry,sure,high,far, yes
+<END_TRAIN>
+<20,wide,day,wintry,maybe,high,no_car, yes
+20-60,wide,night,clear,maybe,high,far, yes
+<20,wide,day,clear,barely,medium,far, yes
+60-80,narrow,twilight,clear,sure,medium,medium, no
+>80,wide,night,clear,sure,medium,medium, yes
+20-60,wide,night,rainy,barely,high,no_car, no
+<20,wide,night,clear,sure,medium,no_car, yes
