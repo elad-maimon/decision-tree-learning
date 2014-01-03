@@ -1,9 +1,15 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileParser {
-	private Attributes attributes;
+	public static final String DELIMITER = ",";
+	public static final String ATTR_TERMINATOR = "<END_ATTR>";
+	public static final String TRAIN_TERMINATOR = "<END_TRAIN>";
+	
+//	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	private Attributes attributes = new Attributes();
 	private int training_set;
 	private int test_set;
 
@@ -17,12 +23,19 @@ public class FileParser {
 	
 	private void parseInputFile(String filename) {
 		BufferedReader br = null;
+		String line;
+		String[] parts;
 
 		try {
 			br = new BufferedReader(new FileReader(filename));
 
-// 			this.algorithm = br.readLine().charAt(0);
- 			
+			// Reading attributes section
+			while (!(line = br.readLine()).equals(ATTR_TERMINATOR)) {
+				parts = line.split("\\s+");
+				if (parts.length == 2)
+					attributes.add(parts[0], parts[1].split(","));
+			}
+
  		} catch (IOException e) {
 			System.out.println("Error occured while reading input file");
 			e.printStackTrace();
