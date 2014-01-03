@@ -9,16 +9,16 @@ public class FileParser {
 	public static final String TRAIN_TERMINATOR = "<END_TRAIN>";
 	
 	private Attribute[] attributes;
-	private int         training_set;
-	private int         test_set;
+	private Example[]   training_set;
+	private Example[]   test_set;
 
 	public FileParser(String filename) {
 		parseInputFile(filename);
 	}
 
 	public Attribute[] getAttributes()  { return attributes; }
-	public int         getTrainingSet() { return training_set; }
-	public int         getTestSet()     { return test_set; }
+	public Example[]   getTrainingSet() { return training_set; }
+	public Example[]   getTestSet()     { return test_set; }
 	
 	private void parseInputFile(String filename) {
 		BufferedReader br = null;
@@ -33,12 +33,32 @@ public class FileParser {
 			while (!(line = br.readLine()).equals(ATTR_TERMINATOR)) {
 				parts = line.split("\\s+");
 				if (parts.length == 2)
-					attributes_list.add(new Attribute(parts[0], parts[1].split(",")));
+					attributes_list.add(new Attribute(parts[0], parts[1].split(DELIMITER)));
 			}
-			
-			attributes = (Attribute[])attributes_list.toArray();
+			attributes = attributes_list.toArray(new Attribute[attributes_list.size()]);
 
- 		} catch (IOException e) {
+			// Reading training set section
+			ArrayList<Example> training_set_list = new ArrayList<Example>();
+			while (!(line = br.readLine()).equals(TRAIN_TERMINATOR)) {
+				parts = line.split(", ");
+				training_set_list.add(new Example.BuilderForAttributes(attributes)
+										  .values(parts[0].split(DELIMITER))
+										  .classification(parts[1])
+										  .build());
+			}
+			training_set = training_set_list.toArray(new Example[training_set_list.size()]);
+
+			// Reading test set section
+			ArrayList<Example> test_set_list = new ArrayList<Example>();
+			while ((line = br.readLine()) != null) {
+				parts = line.split(", ");
+				test_set_list.add(new Example.BuilderForAttributes(attributes)
+										  .values(parts[0].split(DELIMITER))
+										  .classification(parts[1])
+										  .build());
+			}
+			test_set = test_set_list.toArray(new Example[test_set_list.size()]);
+		} catch (IOException e) {
 			System.out.println("Error occured while reading input file");
 			e.printStackTrace();
 		} finally {

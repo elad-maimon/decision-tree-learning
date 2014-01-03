@@ -1,31 +1,32 @@
 import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Example extends HashMap<String, String> {
 	public void setClassification(String classification) {
-		this.put("classification", classification);
+		put("classification", classification);
 	}
 	
 	public String getClassification() {
-		return this.get("classification");
+		return get("classification");
 	}
 	
-	public static class Builder {
-		private Attribute[] attributes;
-		private String[]    values;
-		private String      classification;
-
-		public Builder withAttributes(Attribute[] attributes) {
+	// Using builder pattern to build the example with the correct keys and values according the the attributes
+	public static class BuilderForAttributes {
+		private final Attribute[] attributes; // Required
+		private String[]          values;
+		private String            classification;
+		
+		public BuilderForAttributes(Attribute[] attributes) {
 			this.attributes = attributes;
-			return this;
 		}
 
-		public Builder withValues(String[] values) {
+		public BuilderForAttributes values(String[] values) {
 			this.values = values;
 			return this;
 		}
 		
-		public Builder classification(String classification) {
+		public BuilderForAttributes classification(String classification) {
 			this.classification = classification;
 			return this;
 		}
@@ -40,5 +41,14 @@ public class Example extends HashMap<String, String> {
 			
 			return example;
 		}
+	}
+
+	public String toString() {
+		StringBuffer str = new StringBuffer();
+		
+		for (Map.Entry<String, String> entry : entrySet())
+			str.append(entry.getKey() + ":\t " + entry.getValue() + "\n");
+
+		return str.toString();
 	}
 }
