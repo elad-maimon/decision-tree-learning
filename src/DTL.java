@@ -1,8 +1,5 @@
 public class DTL {
-	public DTL() {
-	}
-
-	public void train(Example[] examples, Attributes attributes, String default_classification) {
+	public void train(Example[] examples, Attribute[] attributes, String default_classification) {
 		
 	}
 	
