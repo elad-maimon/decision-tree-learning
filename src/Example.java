@@ -3,22 +3,23 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Example extends HashMap<String, String> {
-	public void setClassification(String classification) {
-		put("classification", classification);
-	}
-	
-	public String getClassification() {
-		return get("classification");
-	}
+	public String classification;
+	public String original_line;
 	
 	// Using builder pattern to build the example with the correct keys and values according the the attributes
 	public static class BuilderForAttributes {
 		private final Attributes attributes; // Required
 		private String[]         values;
 		private String           classification;
+		private String           original_line;
 		
 		public BuilderForAttributes(Attributes attributes) {
 			this.attributes = attributes;
+		}
+
+		public BuilderForAttributes originalLine(String line) {
+			this.original_line = line;
+			return this;
 		}
 
 		public BuilderForAttributes values(String[] values) {
@@ -36,8 +37,9 @@ public class Example extends HashMap<String, String> {
 			
 			for (int i = 0; i < attributes.size(); i++)
 				example.put(attributes.get(i).name, values[i]);
-				
-			example.setClassification(classification);
+
+			example.original_line = original_line;
+			example.classification = classification;
 			
 			return example;
 		}

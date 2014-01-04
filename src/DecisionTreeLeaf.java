@@ -9,4 +9,9 @@ public class DecisionTreeLeaf implements iDecisionTreeNode {
 	public String evaluate(Example example) {
 		return value;
 	}
+
+	@Override
+	public void print(int depth) {
+		System.out.println("<" + value + ">");
+	}
 }

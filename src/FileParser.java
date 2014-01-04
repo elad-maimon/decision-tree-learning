@@ -45,6 +45,7 @@ public class FileParser {
 			while ((line = br.readLine()) != null) {
 				parts = line.split(", ");
 				test_set.add(new Example.BuilderForAttributes(attributes)
+										.originalLine(line)
 										.values(parts[0].split(DELIMITER))
 										.classification(parts[1])
 										.build());
@@ -56,6 +57,5 @@ public class FileParser {
 			if (br != null)
 				try { br.close(); } catch (IOException e) { e.printStackTrace(); }
 		}
-		
 	}
 }
