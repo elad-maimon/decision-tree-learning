@@ -2,6 +2,11 @@ public class java_ex3 {
 	public static final String INPUT_FILENAME = "input.txt";
 	public static final String OUTPUT_FILENAME = "output.txt";
 
+	// Set of operations:
+	//   - parsing input file
+	//   - train a decision tree based on the training set
+	//   - evaluate the examples in the test set
+	//   - print evaluation results to a file
 	public static void main(String[] args) {
 		DTL dtl = new DTL();
 

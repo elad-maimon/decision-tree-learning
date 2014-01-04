@@ -1,5 +1,8 @@
 import java.io.*;
 
+// This class concerns the reading from the formatted input file and create the data structure necessary
+// for the DTL class. It has main method for parsing the file (parseInputFile) and getters for the 
+// data structures that stored during the parsing
 public class FileParser {
 	public static final String DELIMITER = ",";
 	public static final String ATTR_TERMINATOR = "<END_ATTR>";

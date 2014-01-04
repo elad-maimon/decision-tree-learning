@@ -1,5 +1,7 @@
-
+// Helper class with required methods for calculating the information gain of an attribute.
 public class InformationTheoryHelper {
+	// This method gets a set of examples and attribute to calculate its information gain.
+	// It prepares the counters of every values and uses the basic informationGain method.
 	public static double calculateForAttribute(Attribute attribute, Examples examples) {
 		BinaryCounter full_set_counter = examples.countByClassification();
 		BinaryCounter[] subset_counters = new BinaryCounter[attribute.values.length];
@@ -10,6 +12,7 @@ public class InformationTheoryHelper {
 		return informationGain(full_set_counter, subset_counters);
 	}
 	
+	// Calculate the entropy of binary probability variable
 	public static double entropy(BinaryCounter bin) {
 		double pos_prob = (double)bin.pos / bin.total();
 		double neg_prob = (double)bin.neg / bin.total();
@@ -20,7 +23,8 @@ public class InformationTheoryHelper {
 		else
 			return result;
 	}
-	
+
+	// Calculates: IG(A) = entropy(P(pos), P(neg)) - remainder(A)
 	public static double informationGain(BinaryCounter full_set_counter, BinaryCounter[] subset_counters) {
 		double remaidner = 0;
 		

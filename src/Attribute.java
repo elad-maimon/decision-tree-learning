@@ -1,3 +1,4 @@
+// This class represents an attribute. It has key and list of optional values
 public class Attribute {
 	public String   key;
 	public String[] values;

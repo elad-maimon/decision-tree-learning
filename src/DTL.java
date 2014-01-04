@@ -1,3 +1,7 @@
+// This is the main API to the decision tree learning technique.
+// The API supports this two operations:
+//   1. Train - build the decision tree according to given set of examples
+//   2. Evaluate - evaluate an example based on the existing decision tree.
 public class DTL {
 	private iDecisionTreeNode decision_tree;
 
@@ -9,6 +13,8 @@ public class DTL {
 		return decision_tree.evaluate(example);
 	}
 
+	// The main algorithm for building the decision tree.
+	// Based on this algorithm: http://u.cs.biu.ac.il/~haimga/Teaching/AI/saritLectures/Lecture8a.pdf
 	private iDecisionTreeNode train(Examples examples, Attributes attributes, String default_classification) {
 		if (examples.empty())
 			return new DecisionTreeLeaf(default_classification);
@@ -24,6 +30,7 @@ public class DTL {
 		
 		DecisionTreeComposite node = new DecisionTreeComposite(best.key);
 		
+		// For each value in the best attribute, recursively build the child node by calling this method
 		for (String value : best.values) {
 			Examples filtered_examples = examples.selectByAttribute(best.key, value);
 			Attributes filtered_attributes = attributes.reject(best);
@@ -35,6 +42,7 @@ public class DTL {
 		return node;
 	}
 
+	// Return the majority classification
 	private String mode(Examples examples) {
 		BinaryCounter counter = examples.countByClassification();
 		
@@ -49,13 +57,8 @@ public class DTL {
 		double best_gain = InformationTheoryHelper.calculateForAttribute(attributes.get(0), examples);
 		Attribute best = attributes.get(0);
 		
-//		System.out.println(attributes.get(0).name);
-//		System.out.println(InformationTheoryHelper.calculateForAttribute(attributes.get(0), examples));
-
 		// Calculate information gain for rest of the attributes check if better then best
 		for (int i = 1; i < attributes.size(); i++) {
-//			System.out.println(attributes.get(i).name);
-//			System.out.println(InformationTheoryHelper.calculateForAttribute(attributes.get(i), examples));
 			double current_gain = InformationTheoryHelper.calculateForAttribute(attributes.get(i), examples);
 			
 			if (current_gain > best_gain) {

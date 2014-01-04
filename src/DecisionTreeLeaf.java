@@ -1,3 +1,4 @@
+// Simple implementation of the composite design pattern
 public class DecisionTreeLeaf implements iDecisionTreeNode {
 	private String value;
 

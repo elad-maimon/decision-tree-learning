@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 
+// This class represents an example. Example can be both train example or test example.
+// It extends HashMap so each example has a list of attributes and the specific value for it.
+// It also include the classification of the example and the raw original creating line for output purpose. 
 @SuppressWarnings("serial")
 public class Example extends HashMap<String, String> {
 	public String classification;
