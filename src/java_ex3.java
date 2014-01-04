@@ -18,27 +18,8 @@ public class java_ex3 {
 				testFormatter.addFailure(test_example);
 		}
 
-		testFormatter.writeToFile("STDOUT");
+		testFormatter.writeToFile(OUTPUT_FILENAME);
 
-//		BinaryCounter full = new BinaryCounter();
-//		full.pos = 6;
-//		full.neg = 6;
-//		
-//		BinaryCounter[] subset = new BinaryCounter[3];
-//		subset[0] = new BinaryCounter();
-//		subset[1] = new BinaryCounter();
-//		subset[2] = new BinaryCounter();
-//
-//		subset[0].pos = 0;
-//		subset[0].neg = 2;
-//		subset[1].pos = 4;
-//		subset[1].neg = 0;
-//		subset[2].pos = 2;
-//		subset[2].neg = 4;
-//		
-//		double d = InformationTheoryHelper.informationGain(full, subset);
-//		System.out.println(d);
-//		
 //		Examples e1 = fileParser.getTestSet();
 //		int[] count = e1.countByClassification();
 //		System.out.println(count[0] + " " + count[1]);
