@@ -22,10 +22,10 @@ public class DTL {
 
 		Attribute best = chooseAttribute(attributes, examples);
 		
-		DecisionTreeComposite node = new DecisionTreeComposite(best.name);
+		DecisionTreeComposite node = new DecisionTreeComposite(best.key);
 		
 		for (String value : best.values) {
-			Examples filtered_examples = examples.selectByAttribute(best.name, value);
+			Examples filtered_examples = examples.selectByAttribute(best.key, value);
 			Attributes filtered_attributes = attributes.reject(best);
 			
 			iDecisionTreeNode child_node = train(filtered_examples, filtered_attributes, mode(examples));

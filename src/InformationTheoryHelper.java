@@ -5,7 +5,7 @@ public class InformationTheoryHelper {
 		BinaryCounter[] subset_counters = new BinaryCounter[attribute.values.length];
 
 		for (int i = 0; i < attribute.values.length; i++)
-			subset_counters[i] = examples.selectByAttribute(attribute.name, attribute.values[i]).countByClassification();
+			subset_counters[i] = examples.selectByAttribute(attribute.key, attribute.values[i]).countByClassification();
 			
 		return informationGain(full_set_counter, subset_counters);
 	}

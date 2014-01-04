@@ -36,7 +36,7 @@ public class Example extends HashMap<String, String> {
 			Example example = new Example();
 			
 			for (int i = 0; i < attributes.size(); i++)
-				example.put(attributes.get(i).name, values[i]);
+				example.put(attributes.get(i).key, values[i]);
 
 			example.original_line = original_line;
 			example.classification = classification;
